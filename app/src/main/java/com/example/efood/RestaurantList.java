@@ -31,10 +31,10 @@ public class RestaurantList extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Αρχικοποίηση του Firebase Firestore
+        
         db = FirebaseFirestore.getInstance();
 
-        // Λήψη των εστιατορίων από το Firestore και εμφάνισή τους στο RecyclerView
+        
         getRestaurantsFromFirestore();
 
     }
@@ -51,25 +51,25 @@ public class RestaurantList extends AppCompatActivity {
                         String name = document.getString("Name");
                         String telephone = document.getString("Telephone");
 
-                        // Λήψη του collection "Menu" για κάθε εστιατόριο
+                        
                         List<Meal> menu = getMenuFromFirestore(document.getId());
 
                         Restaurant restaurant = new Restaurant(name, telephone, menu);
                         restaurants.add(restaurant);
                     }
 
-                    // Εμφάνιση των εστιατορίων στο RecyclerView
+                    
                     adapter = new RestaurantAdapter(restaurants);
                     recyclerView.setAdapter(adapter);
 
-                    // Ορισμός του OnRestaurantClickListener
+                    
                     adapter.setOnRestaurantClickListener(new OnRestaurantClickListener() {
                         @Override
                         public void onRestaurantClick(Restaurant restaurant) {
-                            // Αντικατάσταση του Toast με κώδικα που θέλετε
+                            
                             Toast.makeText(RestaurantList.this, "Clicked on " + restaurant.getName(), Toast.LENGTH_SHORT).show();
 
-                            // Στο κομμάτι του κώδικα όπου ξεκινάτε την MealListActivity
+                            
                             Intent intent = new Intent(RestaurantList.this, MealList.class);
                             intent.putExtra("restaurant", restaurant);
                             startActivity(intent);
@@ -100,7 +100,7 @@ public class RestaurantList extends AppCompatActivity {
                         menu.add(meal);
                     }
 
-                    // Ενημέρωση του Adapter όταν ολοκληρωθεί η λήψη του μενού
+                    
                     adapter.notifyDataSetChanged();
                 } else {
                     Log.e("Firestore", "Error getting documents from Menu collection", task.getException());
