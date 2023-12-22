@@ -35,7 +35,7 @@ public class LobbyActivity extends AppCompatActivity {
             }
         });
 
-        // Αρχικοποίηση της σύνδεσης με το Firestore
+        
         db = FirebaseFirestore.getInstance();
     }
 
@@ -44,10 +44,10 @@ public class LobbyActivity extends AppCompatActivity {
         String lastName = editTextLastName.getText().toString().trim();
         String address = editTextAddress.getText().toString().trim();
 
-        // Δημιουργία αντικειμένου Customer
+        
         Customer customer = new Customer(firstName, lastName, address);
 
-        // Προσθήκη των δεδομένων του χρήστη στη συλλογή "customers" στο Firestore
+        
         db.collection("Customer")
                 .add(customer)
                 .addOnSuccessListener(documentReference -> {
