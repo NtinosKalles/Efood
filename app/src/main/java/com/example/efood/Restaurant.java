@@ -9,7 +9,7 @@ public class Restaurant implements Parcelable {
     private List<Meal> menu;
 
     public Restaurant() {
-        // Υποχρεωτικός κενός constructor για το Firestore
+       
     }
 
     public Restaurant(String name, String telephone, List<Meal> menu) {
